@@ -1,0 +1,5 @@
+#repo description files
+LICENSE
+README.md
+
+#locally script also will skip .gitignore file and .git/ directory
