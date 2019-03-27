@@ -1,4 +1,5 @@
-import os, sys, time, struct, configparser
+import os, sys, time, struct
+import ConfigParser as configparser
 from datetime import datetime
 from base import MiBand2
 from constants import ALERT_TYPES, UUIDS
@@ -14,7 +15,7 @@ try:
         prev_time = datetime.fromtimestamp(timestamp)
         f.close()
         diff = datetime.now() - prev_time
-        if diff.seconds/60 < config['DEFAULT']['check_frequency']:
+        if diff.seconds/60 < config.get('DEFAULT','check_frequency'):
                 sys.exit(0)
 except Exception, e:
         print "File read error?"
@@ -33,7 +34,7 @@ except Exception, e:
 
 heartrates = []
 
-client = InfluxDBClient(config['DEFAULT']['influx_host'], config['DEFAULT']['influx_port'], config['DEFAULT']['influx_user'], config['DEFAULT']['influx_pass'], config['DEFAULT']['influx_db'])
+client = InfluxDBClient(config.get('DEFAULT','influx_host'), config.get('DEFAULT','influx_port'), config.get('DEFAULT','influx_user'), config.get('DEFAULT','influx_pass'), config.get('DEFAULT','influx_db'))
 
 
 def get_heartrate():
