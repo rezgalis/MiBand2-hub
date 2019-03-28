@@ -15,7 +15,7 @@ try:
         prev_time = datetime.fromtimestamp(timestamp)
         f.close()
         diff = datetime.now() - prev_time
-        if diff.seconds/60 < config.get('DEFAULT','check_frequency'):
+        if diff.seconds/60 < int(config.get('DEFAULT','check_frequency')):
                 sys.exit(0)
 except Exception, e:
         print "File read error?"
