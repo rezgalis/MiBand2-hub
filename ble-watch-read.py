@@ -38,7 +38,7 @@ client = InfluxDBClient(config.get('DEFAULT','influx_host'), config.get('DEFAULT
 
 
 def get_heartrate():
-        band.start_raw_data_realtime(heart_measure_callback=read_hr)
+        band.start_heart_rate_realtime(heart_measure_callback=read_hr)
         json_body = [
                 {
                         "measurement": sys.argv[2],
